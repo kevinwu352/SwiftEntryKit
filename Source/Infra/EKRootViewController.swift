@@ -50,22 +50,27 @@ class EKRootViewController: UIViewController {
         }
     }
 
+    var rotation: EKAttributes.PositionConstraints.Rotation?
+    
     override var shouldAutorotate: Bool {
-        if lastAttributes == nil {
+        if let rotation = rotation {
+            return rotation.isEnabled
+        } else {
             return true
         }
-        return lastAttributes.positionConstraints.rotation.isEnabled
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        guard let lastAttributes = lastAttributes else {
+        guard let rotation = rotation else {
             return super.supportedInterfaceOrientations
         }
-        switch lastAttributes.positionConstraints.rotation.supportedInterfaceOrientations {
+        switch rotation.supportedInterfaceOrientations {
         case .standard:
             return super.supportedInterfaceOrientations
         case .all:
             return .all
+        case .mask(let value):
+            return value
         }
     }
     

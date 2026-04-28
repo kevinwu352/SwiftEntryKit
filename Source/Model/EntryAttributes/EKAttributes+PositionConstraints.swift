@@ -138,6 +138,9 @@ public extension EKAttributes {
                 
                 /** Supports all orinetations */
                 case all
+                
+                /** Supports specific orinetation */
+                case mask(value: UIInterfaceOrientationMask)
             }
             
             /** Autorotate the entry along with the device orientation */

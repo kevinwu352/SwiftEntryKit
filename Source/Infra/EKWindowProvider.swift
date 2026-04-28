@@ -63,6 +63,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
             return nil
         }
         entryVC.setStatusBarStyle(for: attributes)
+        entryVC.rotation = attributes.positionConstraints.rotation
 
         entryWindow.windowLevel = attributes.windowLevel.value
         if presentInsideKeyWindow {
